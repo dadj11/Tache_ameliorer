@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tache;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Symfony\Component\Routing\Route;
 
 class TacheController extends Controller
 {
@@ -14,7 +15,7 @@ class TacheController extends Controller
     public function index()
     {
         //
-        $all= Tache::all();
+        $all=  Tache::with('notes')->get();
         //dd($all);
         return view('dashboard',["all"=>$all]);
     }
@@ -70,5 +71,8 @@ class TacheController extends Controller
     public function destroy(string $id)
     {
         //
+
+        Tache::delete($id);
+        return redirect()->route('taches.index');
     }
 }

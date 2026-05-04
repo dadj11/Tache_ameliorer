@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -60,5 +61,7 @@ class NoteController extends Controller
     public function destroy(string $id)
     {
         //
+        Note::delete($id);
+        return redirect()->route('taches.index');
     }
 }

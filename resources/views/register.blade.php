@@ -2,12 +2,17 @@
     <div style="width: 100%; max-width: 400px; padding: 30px; background: white; border-radius: 15px; border: 1px solid #e5e7eb; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
 
         <div style="text-align: center; margin-bottom: 25px;">
-            <h2 style="margin: 0; color: #111827;">Connexion</h2>
-            <p style="color: #6b7280; font-size: 0.9rem;">Accédez à votre gestionnaire de tâches</p>
+            <h2 style="margin: 0; color: #111827;">Creation de compt</h2>
+            <p style="color: #6b7280; font-size: 0.9rem;">Accédez à votre Nouvaux gestionnaire de tâches</p>
         </div>
 
-        <form action="/login" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+        <form action="/register" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
             @csrf
+            <div>
+                <label for="name" style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Godwin"
+                    style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; outline-color: #4f46e5;">
+            </div>
 
             <!-- Champ Email -->
             <div>
@@ -28,10 +33,9 @@
                 Se connecter
             </button>
 
-        </form>
-
         <div style="text-align: center; margin-top: 20px;">
-            <a href="/register" style="color: #4f46e5; text-decoration: none; font-size: 0.85rem;">Pas encore de compte ? S'inscrire</a>
+            <a href="/login" style="color: #4f46e5; text-decoration: none; font-size: 0.85rem;">J'ai deja un compte </a>
         </div>
+        </form>
     </div>
 </div>

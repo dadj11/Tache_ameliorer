@@ -17,13 +17,13 @@ class NoteSeeder extends Seeder
         $tacheId = DB::table('taches')->first()->id;
 
         DB::table('notes')->insert([
-            [
+            [   'date' => '2023-10-26',
                 'contenu' => 'Penser à prendre les dossiers rouges.',
                 'tache_id' => $tacheId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
+            [   'date' => '2023-10-27',
                 'contenu' => 'Vérifier la disponibilité de la salle de réunion.',
                 'tache_id' => $tacheId,
                 'created_at' => now(),

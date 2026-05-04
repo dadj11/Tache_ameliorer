@@ -10,14 +10,32 @@ class AuthController extends Controller
     public function login (){
            return view('login');
         }
-    public function autentiquate (){
+    public function autentiquate (Request $request){
+        $email=htmlspecialchars($request->email);
+        $password=htmlspecialchars($request->password);
+        $estValide=true;
+
+        if ($estValide){
            return redirect()->route('taches.index');
+           }
         }
     public function register (){
-            return view('login');
+            return view('register');
         }
-    public function storAction (){
-            return view('login');
+    public function storAction (Request $request){
+        $name= htmlspecialchars($request->name);
+        $email=htmlspecialchars($request->email);
+        $password=htmlspecialchars($request->password);
+        $estValide=true;
+        if($password==0){
+
+        };
+
+    //   dd($request->name);
+        if ($estValide){
+        return redirect()->route('taches.index');
+        }
+
         }
 
 

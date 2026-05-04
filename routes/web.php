@@ -22,7 +22,10 @@ Route::get('/login',
 Route::get('/register',
  [AuthController::class, 'register']
  )->name('register');
-Route::post('/autentiquate',
+ Route::post('/register',
+ [AuthController::class, 'storAction']
+ )->name('storAction');
+Route::post('/login',
 [AuthController::class ,'autentiquate']
 )->name('autentiquate');
 
