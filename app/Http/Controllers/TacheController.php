@@ -15,7 +15,7 @@ class TacheController extends Controller
     public function index()
     {
         //
-        $all=  Tache::with('notes')->get();
+        $all=  Tache::all();
         //dd($all);
         return view('dashboard',["all"=>$all]);
     }
@@ -36,10 +36,24 @@ class TacheController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request->titre);
+        $titre=htmlspecialchars($request->titre);
+        $description=htmlspecialchars($request->description);
+        $date=htmlspecialchars($request->date);
+        $heur=htmlspecialchars($request->heur);
+        $duree=htmlspecialchars($request->duree);
+        $tache = new Tache();
+        $tache->titre=$titre;
+        $tache->description=$description;
+        $tache->date=$date;
+        $tache->heur=$heur;
+        $tache->duree=$duree;
+        $tache->save();
+
+    return redirect()->route('taches.index');
 
 
-    }
+
+  }
 
     /**
      * Display the specified resource.
@@ -70,9 +84,12 @@ class TacheController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // On trouve la tâche ou on renvoie une erreur 404 si elle n'existe pas
+    $tache = Tache::findOrFail($id);
 
-        Tache::delete($id);
-        return redirect()->route('taches.index');
+    // On supprime l'instance
+    $tache->delete();
+
+    return redirect()->route('taches.index');
     }
 }
