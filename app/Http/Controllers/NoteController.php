@@ -12,7 +12,8 @@ class NoteController extends Controller
      */
     public function index()
     {
-        //
+        $all=Note::all();
+        return view("note.index",["all"=>$all]);
     }
 
     /**
@@ -62,6 +63,6 @@ class NoteController extends Controller
     {
         //
         Note::delete($id);
-        return redirect()->route('taches.index');
+        return redirect()->route('notes.index');
     }
 }

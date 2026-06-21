@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('date');
+            $table->text("titre");
             $table->text('contenu');
-            $table->integer('tache_id');
-            $table->foreign('tache_id')->references('id')->on('taches');
+            $table->date('date');
+            $table->time('heur');
+
         });
     }
 

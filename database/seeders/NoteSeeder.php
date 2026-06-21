@@ -5,27 +5,38 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class NoteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+   public function run(): void
     {
-        //
-        $tacheId = DB::table('taches')->first()->id;
-
+        // Exemple d'insertion de plusieurs notes fictives
         DB::table('notes')->insert([
-            [   'date' => '2023-10-26',
-                'contenu' => 'Penser à prendre les dossiers rouges.',
-                'tache_id' => $tacheId,
+            [
+                'titre' => 'Réunion d\'équipe',
+                'contenu' => 'Discuter de la progression du projet Laravel.',
+                'date' => Carbon::now()->format('Y-m-d'),
+                'heur' => Carbon::now()->format('H:i:s'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [   'date' => '2023-10-27',
-                'contenu' => 'Vérifier la disponibilité de la salle de réunion.',
-                'tache_id' => $tacheId,
+            [
+                'titre' => 'Liste de courses',
+                'contenu' => 'Acheter du café, du lait et des œufs.',
+                'date' => '2026-05-15',
+                'heur' => '10:30:00',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'titre' => 'Idée de génie',
+                'contenu' => 'Créer une application qui révolutionne le rangement des chaussettes.',
+                'date' => '2026-06-01',
+                'heur' => '14:00:00',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

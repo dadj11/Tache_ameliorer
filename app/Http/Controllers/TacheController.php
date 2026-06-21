@@ -17,7 +17,7 @@ class TacheController extends Controller
         //
         $all=  Tache::all();
         //dd($all);
-        return view('dashboard',["all"=>$all]);
+        return view('tache.index',["all"=>$all]);
     }
 
     /**
@@ -26,8 +26,8 @@ class TacheController extends Controller
     public function create()
     {
         //
-        $token=csrf_token();
-        return view("tache_create",['token'=>$token]);
+
+        return view("tache.create",);
     }
 
     /**
