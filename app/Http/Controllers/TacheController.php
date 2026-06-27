@@ -36,18 +36,20 @@ class TacheController extends Controller
     public function store(Request $request)
     {
         //
-        $titre=htmlspecialchars($request->titre);
+        $validate=$request->validate(
+            ["titre"=>"required | min:3",
+            "description"=>"min:5",
+            "date"=>"required|date||after_or_equal:today",
+            "duree"=>"required"
+            ]
+        );
+
+         $titre=htmlspecialchars($request->titre);
         $description=htmlspecialchars($request->description);
         $date=htmlspecialchars($request->date);
         $heur=htmlspecialchars($request->heur);
         $duree=htmlspecialchars($request->duree);
-        $tache = new Tache();
-        $tache->titre=$titre;
-        $tache->description=$description;
-        $tache->date=$date;
-        $tache->heur=$heur;
-        $tache->duree=$duree;
-        $tache->save();
+
 
     return redirect()->route('taches.index');
 

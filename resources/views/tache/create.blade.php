@@ -1,48 +1,50 @@
-<div style="font-family: sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 15px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); background: white;">
+@extends('layout.base')
+@section('content')
+    <div class="max-w-md mx-auto my-10 p-6 border border-gray-300 rounded-xl shadow-lg bg-white font-sans">
 
-    <h2 style="color: #111827; margin-top: 0; display: flex; align-items: center; gap: 10px;">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 24px; height: 24px; color: #4f46e5;">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-        </svg>
-        Nouvelle Tâche
-    </h2>
+        <h2 class="flex items-center gap-2 text-xl font-semibold text-gray-900 mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#4f46e5"
+                class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            Nouvelle Tâche
+        </h2>
 
-    <form action="/taches" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
-        @csrf {{-- Utilise la directive Laravel @csrf si possible --}}
-
-        <div>
-            <label for="titre" style="display: block; font-weight: 600; margin-bottom: 5px; color: #374151;">Titre</label>
-            <input type="text" id="titre" name="titre" required style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box;">
-        </div>
-
-        <div>
-            <label for="description" style="display: block; font-weight: 600; margin-bottom: 5px; color: #374151;">Description</label>
-            <textarea id="description" name="description" rows="3" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box; font-family: sans-serif;"></textarea>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <form action="/taches/create" method="POST"
+            class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md font-sans space-y-6">
+            <!-- Champ titre -->
             <div>
-                <label for="date" style="display: block; font-weight: 600; margin-bottom: 5px; color: #374151;">Date</label>
-                <input type="date" id="date" name="date" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px;">
+                <label for="titre" class="block mb-2 font-semibold text-gray-700">Titre :</label>
+                <input type="text" id="titre" name="titre" required minlength="3"
+                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
             </div>
+
+            <!-- Champ description -->
             <div>
-                <label for="Heure" style="display: block; font-weight: 600; margin-bottom: 5px; color: #374151;">Heure</label>
-                <input type="time" id="Heure" name="Heure" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px;">
+                <label for="description" class="block mb-2 font-semibold text-gray-700">Description :</label>
+                <textarea id="description" name="description" minlength="5" rows="4"
+                    class="w-full rounded-md border border-gray-300 px-3 py-2 font-sans focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
             </div>
-        </div>
 
-        <div>
-            <label for="duree" style="display: block; font-weight: 600; margin-bottom: 5px; color: #374151;">Durée estimée</label>
-            <input type="time" id="duree" name="duree" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px;">
-        </div>
+            <!-- Champ date + heure -->
+            <div>
+                <label for="date" class="block mb-2 font-semibold text-gray-700">Date et heure :</label>
+                <input type="datetime-local" id="date" name="date" required
+                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            </div>
 
-        <div style="display: flex; gap: 10px; margin-top: 10px;">
-            <button type="submit" style="flex: 2; background-color: #4f46e5; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: background 0.3s;">
-                Enregistrer la tâche
+            <!-- Champ durée -->
+            <div>
+                <label for="duree" class="block mb-2 font-semibold text-gray-700">Durée (en minutes) :</label>
+                <input type="number" id="duree" name="duree" required min="1"
+                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            </div>
+
+            <button type="submit"
+                class="w-full rounded-md bg-indigo-600 px-4 py-3 font-bold text-white transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                Envoyer
             </button>
-            <button type="button" onclick="window.location='/'" style="flex: 1; background-color: #f3f4f6; color: #374151; border: 1px solid #d1d5db; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold;">
-                Annuler
-            </button>
-        </div>
-    </form>
-</div>
+        </form>
+
+    </div>
+@endsection
